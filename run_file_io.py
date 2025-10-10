@@ -1,7 +1,7 @@
 import os, sys
 from llama_cpp import Llama
 
-MODEL_PATH = os.environ.get("GGUF_PATH", "qwen2.5-7b-instruct-q4_k_m.gguf")
+MODEL_PATH = os.environ.get("GGUF_PATH", "Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf")
 
 # Hardware/Computing Parameters
 N_CTX        = int(os.environ.get("N_CTX", 32768)) # Change this for laptops?
@@ -9,7 +9,7 @@ N_THREADS    = int(os.environ.get("N_THREADS", max(1, (os.cpu_count() or 2) - 1)
 N_GPU_LAYERS = int(os.environ.get("N_GPU_LAYERS", 0)) # All CPU for now?
 
 # LLM Parameters
-MAX_TOKENS = min(int(os.environ.get("MAX_TOKENS", 500)), 500)
+MAX_TOKENS = min(int(os.environ.get("MAX_TOKENS", 1500)), 1500)
 TEMP       = float(os.environ.get("LLM_TEMP", "0.7"))
 TOP_P      = float(os.environ.get("TOP_P", 0.95))
 REPEAT_PEN = float(os.environ.get("REPEAT_PEN", 1.1))
@@ -20,7 +20,7 @@ llm = Llama(
 	n_ctx=N_CTX,
 	n_threads=N_THREADS,
 	n_gpu_layers=N_GPU_LAYERS,
-	chat_format="qwen",
+	chat_format="llama-3",
 	verbose=False,
 )
 
@@ -30,7 +30,7 @@ print(f"Loaded model: {os.path.basename(MODEL_PATH)}")
 # Files/path stuff
 base_dir = os.path.dirname(os.path.abspath(__file__))
 in_path  = os.path.join(base_dir, "user_prompt.txt")
-system_prompt_path = os.path.join(base_dir, "system_prompt.txt")
+system_prompt_path = os.path.join(base_dir, "system_prompt6.txt")				# Change to test
 out_path = os.path.join(base_dir, "output.txt")
 
 if not os.path.exists(in_path):
