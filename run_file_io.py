@@ -9,8 +9,8 @@ N_THREADS    = int(os.environ.get("N_THREADS", max(1, (os.cpu_count() or 2) - 1)
 N_GPU_LAYERS = int(os.environ.get("N_GPU_LAYERS", 0)) # All CPU for now?
 
 # LLM Parameters
-MAX_TOKENS = min(int(os.environ.get("MAX_TOKENS", 1500)), 1500)
-TEMP       = float(os.environ.get("LLM_TEMP", "0.7"))
+MAX_TOKENS = min(int(os.environ.get("MAX_TOKENS", 4096)), 4096)
+TEMP       = float(os.environ.get("LLM_TEMP", "0.3"))
 TOP_P      = float(os.environ.get("TOP_P", 0.95))
 REPEAT_PEN = float(os.environ.get("REPEAT_PEN", 1.1))
 
@@ -30,7 +30,7 @@ print(f"Loaded model: {os.path.basename(MODEL_PATH)}")
 # Files/path stuff
 base_dir = os.path.dirname(os.path.abspath(__file__))
 in_path  = os.path.join(base_dir, "user_prompt.txt")
-system_prompt_path = os.path.join(base_dir, "system_prompt6.txt")				# Change to test
+system_prompt_path = os.path.join(base_dir, "system_prompt7.txt")				# Change to test
 out_path = os.path.join(base_dir, "output.txt")
 
 if not os.path.exists(in_path):
